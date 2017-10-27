@@ -5,24 +5,27 @@ pairs = ['XETHZUSD'
 		,'XXBTZUSD'
 		,'XXRPZUSD'
 		,'XXMRZUSD'
+		,'XXMRZUSD'
 		]
-vals = ['301.0'
+vals = ['302.0'
 		,'5650.0'
 		,'0.20'
-		,'88.0'
+		,'87.0'
+		,'91.0'
 		]
 
-direction = ['down'
+direction = ['up'
 		, 'down'
 		, 'down'
 		, 'down'
+		, 'up'
 		]
 
 my_cron = CronTab(user='daksh')
 
 for index,pair in enumerate(pairs):
 
-	job = my_cron.new(command='/Users/daksh/anaconda2/bin/python /Users/daksh/personal/crypto/kraken/queryPrice_dev.py --currency_pair {0} --val {1} --direction {2}'.format(pair,vals[index],direction[index]),comment='queryPrice_'+pair)
+	job = my_cron.new(command='/home/daksh/anaconda2/bin/python /home/daksh/cron/Crypto-bot/queryPrice_dev.py --currency_pair {0} --val {1} --direction {2}'.format(pair,vals[index],direction[index]),comment='queryPrice_'+pair)
 
 	job.minute.every(3)
 

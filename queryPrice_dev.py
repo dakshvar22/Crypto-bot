@@ -12,12 +12,10 @@
 import krakenex
 import argparse
 import smtplib
+from config import username,password
 
 k = krakenex.API()
-k.load_key('/Users/daksh/personal/crypto/kraken/kraken.key')
-
-username = 'dakshvar22@gmail.com'
-password = '&$#@&$#@'
+k.load_key('/home/daksh/cron/Crypto-bot/kraken.key')
 
 def mail(currency_pair,val):
     server = smtplib.SMTP('smtp.gmail.com:587')
@@ -64,7 +62,7 @@ def checkLastSent(filePath,val,direction):
 
 def run(currency_pair,val,direction):
 
-    filePath = '/Users/daksh/personal/crypto/kraken/vals/vals' + '_' + currency_pair + '.txt'
+    filePath = '/home/daksh/cron/Crypto-bot/vals/vals' + '_' + currency_pair + '.txt'
     f = open(filePath,'ab+')
     # while 1:
     result =  k.query_public('Ticker', {'pair': currency_pair})['result'][currency_pair]
